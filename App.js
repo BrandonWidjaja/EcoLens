@@ -5,7 +5,6 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Card } from '@rneui/themed';
 import tw from 'twrnc';
 import { Camera } from 'expo-camera';
-import * as FileSystem from 'expo-file-system';
 
 export default function App() {
   const [backendText, setBackendText] = useState(null);
