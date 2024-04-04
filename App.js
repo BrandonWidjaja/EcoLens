@@ -4,26 +4,15 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { Card, Button } from '@rneui/themed'
 import tw from 'twrnc'
 import { styles } from './styles.js'
+import Home from './pages/screens/Home.jsx'
 
 export default function App() {
   return (
     <SafeAreaProvider>
-      <View style={tw`flex-1 justify-center items-center`}>
-        <Text style={styles.container}>
-          Open up App.js to start working on your app!
-        </Text>
-        <StatusBar style="auto" />
-        <Card>
-          <Text>Word of the Day</Text>
-          <Text>be-nev-o=lent</Text>
-          <Text>adjective</Text>
-          <Text>
-            well meaning and kindly.
-            {'"a benevolent smile"'}
-          </Text>
-          <Button title="Learn More" size="sm" type="clear"></Button>
-        </Card>
+      <View styles = {tw`bg-sky-500`}>
+        <Home />
       </View>
+      
     </SafeAreaProvider>
   )
 }
