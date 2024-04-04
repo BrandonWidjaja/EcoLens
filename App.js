@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Card } from '@rneui/themed';
-import tw from 'twrnc';
+import { StatusBar } from 'expo-status-bar'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { Card, Button } from '@rneui/themed'
+import { useState } from 'react'
+import tw from 'twrnc'
+import { styles } from './styles.js'
+import Home from './pages/screens/Home.jsx'
 
 export default function App() {
   const [backendText, setBackendText] = useState(null);
@@ -21,24 +23,9 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <View style={tw`flex-1 justify-center items-center`}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <StatusBar style="auto" />
-        <Card>
-          <Text>Word of the Day</Text>
-          {backendText && <Text>{backendText}</Text>}
-          <Button title="Fetch from Backend" size="sm" type="clear" onPress={handleButtonPress} />
-        </Card>
-      </View>
+      <Home></Home>
     </SafeAreaProvider>
   );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  
+}
