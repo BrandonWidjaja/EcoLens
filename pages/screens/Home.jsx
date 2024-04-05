@@ -37,8 +37,9 @@ const Home = ({ navigation }) => {
           }
         }
       )
-      console.log('Backend response:', response.data)
-
+      console.log('Backend response:', response.data.message)
+      const message = response.data.message
+      navigation.navigate('Search', { message })
       // Clear search text after successful submission
       setSearchText('')
 
