@@ -6,8 +6,12 @@ import { useState } from 'react'
 import tw from 'twrnc'
 import { styles } from './styles.js'
 import Home from './pages/screens/Home.jsx'
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import CameraScreen from './pages/screens/CameraScreen.jsx'
 
 export default function App() {
+  const Stack = createNativeStackNavigator();
   const [backendText, setBackendText] = useState(null);
 
   const handleButtonPress = async () => {
@@ -22,9 +26,15 @@ export default function App() {
   };
 
   return (
-    <SafeAreaProvider>
-      <Home></Home>
-    </SafeAreaProvider>
+    <NavigationContainer>
+      <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={Home}
+          />
+          <Stack.Screen name="Profile" component={CameraScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 
   

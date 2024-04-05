@@ -1,21 +1,23 @@
 import React from 'react'
-import { ScrollView, StyleSheet, TouchableOpacity, Image } from 'react-native'
-import { Button, LinearGradient} from '@rneui/themed';
-import { View, Text, SafeAreaView } from 'react-native';
+import { ScrollView, StyleSheet, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native'
+import { Button, SearchBar} from '@rneui/themed';
+import { View, Text, Platform} from 'react-native';
 import { useState } from 'react';
-import {
-    responsiveHeight,
-  } from "react-native-responsive-dimensions";
+import { responsiveHeight } from "react-native-responsive-dimensions";
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [count, setCount] = useState(0);
   const navigate = () => setCount(prevCount => prevCount + 1)
+  const [searchText, setSearchText] = useState('');
+  const updateSearch = (search) => {
+    setSearchText(search);
+  }
   return (
     <View style = {[styles.container, {flexDirection: 'column',},]}>
         <View style = {{flex: 1, backgroundColor: 'orange', maxWidth: '80%', justifyContent:'center', alignItems:'center'}}>
             <Text style = {styles.title}>EcoLens</Text>
         </View>
-        <View style = {{flex: 2, backgroundColor: 'red', maxWidth: '80%', justifyContent:'center', alignItems:'center'}}>
+        <View style = {{flex: 4, backgroundColor: 'red', maxWidth: '80%', justifyContent:'center', alignItems:'center'}}>
             <Text style = {styles.desc}>
                 Click the button below to scan an Image!
             </Text>
@@ -27,21 +29,25 @@ const Home = () => {
                 />
             </TouchableOpacity>
         </View>
-        <View style = {{flex: 1, backgroundColor: 'white'}}>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height' ? 'padding' : 'height'} style = {{flex: 3, backgroundColor: 'white', width: '80%'}}>
             <Text style = {styles.desc}>
                 Or
             </Text>
-            <Button color="green" radius={50} size='lg'>
-                    Upload Picture
-            </Button>
-        </View>
+            <SearchBar
+                placeholder="Describe your Item"
+                onChangeText={updateSearch}
+                lightTheme={true}
+                value={searchText}
+                round={true}
+            />
+        </KeyboardAvoidingView>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
     title: {
-        fontSize: 70,
+        fontSize: 50,
         fontFamily: 'Arial',
         fontWeight: '500',
         color: "green",
@@ -55,7 +61,7 @@ const styles = StyleSheet.create({
     },
     logo: {
         aspectRatio:1,
-        height: responsiveHeight(30),
+        height: responsiveHeight(25),
         borderColor: 'green',
         borderWidth: 9,
         borderRadius: 100000,
