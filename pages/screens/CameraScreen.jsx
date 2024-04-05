@@ -34,6 +34,7 @@ const CameraScreen = ({ navigation }) => {
       const uri = photo.uri
       console.log('Photo URI:', uri)
       setCapturedImage(uri)
+      setShowCamera(false)
     }
   }
 
@@ -45,6 +46,11 @@ const CameraScreen = ({ navigation }) => {
 
   const closeCamera = () => {
     setShowCamera(false)
+    setCapturedImage(null)
+  }
+
+  const retakePhoto = () => {
+    setShowCamera(true)
     setCapturedImage(null)
   }
 
@@ -62,9 +68,12 @@ const CameraScreen = ({ navigation }) => {
               onCameraReady={() => setCapturedImage(null)}
             />
             <View style={styles.buttonContainer}>
-              <Button title="Take Picture" onPress={takePicture} />
+              <Button title="Take Picture" color={'green'} onPress={() => {
+                takePicture()
+                }} />
               <Button
                 title="Cancel"
+                color={'green'}
                 onPress={() => {
                   closeCamera()
                   navigation.navigate('Home')
@@ -75,16 +84,20 @@ const CameraScreen = ({ navigation }) => {
         )}
         {capturedImage && (
           <View style={styles.imagePreviewContainer}>
-            <Image
-              source={{ uri: capturedImage }}
-              style={styles.imagePreview}
-            />
+              <Image
+                source={{ uri: capturedImage }}
+                style={styles.imagePreview}
+              />
+    
             <View style={styles.buttonContainer}>
-              <Button title="Confirm" onPress={confirmPicture} />
-              <Button title="Retake" onPress={() => setCapturedImage(null)} />
-              <Button title="Cancel" onPress={closeCamera} />
+              <Button title="Confirm" color={"green"} onPress={confirmPicture} />
+              <Button title="Retake" color={"green"} onPress={retakePhoto} />
+              <Button title="Cancel" color={"green"} onPress={() => {
+                closeCamera()
+                navigation.navigate('Home')
+                }} />
             </View>
-          </View>
+          </View> 
         )}
         {confirmedImage && (
           <View style={styles.imagePreviewContainer}>
@@ -92,7 +105,6 @@ const CameraScreen = ({ navigation }) => {
               source={{ uri: confirmedImage }}
               style={styles.imagePreview}
             />
-            {}
           </View>
         )}
       </View>
@@ -103,28 +115,30 @@ const CameraScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   cameraContainer: {
     flex: 1,
-    width: '100%'
+    width: '100%',
+    backgroundColor: '#FAF3E1',
   },
   camera: {
-    flex: 1
+    flex: 1,
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    marginVertical: 20
+    marginVertical: 20,
+    width: '100%'
   },
   imagePreviewContainer: {
     flex: 1,
     width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center'
+    backgroundColor: '#FAF3E1',
+    alignItems:'center',
+    paddingTop: 50
   },
   imagePreview: {
-    width: '80%',
-    height: 300,
-    resizeMode: 'contain',
-    marginBottom: 20
+    width: '90%',
+    height: '80%',
+    borderRadius:10,
   }
 })
 
