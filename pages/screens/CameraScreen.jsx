@@ -37,33 +37,10 @@ const CameraScreen = ({ navigation }) => {
     }
   }
 
-  const uploadImage = async (uri) => {
-    const formData = new FormData()
-    formData.append('image', {
-      uri,
-      name: 'photo.jpg',
-      type: 'image/jpeg'
-    })
-
-    try {
-      const response = await fetch('http://128.250.0.213:3000/upload', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'content-type': 'multipart/form-data'
-        }
-      })
-      const responseData = await response.json()
-      console.log('Upload Response:', responseData)
-    } catch (error) {
-      console.error('Upload Error:', error)
-    }
-  }
-
   const confirmPicture = () => {
     setConfirmedImage(capturedImage)
     closeCamera()
-    uploadImage(capturedImage)
+    navigation.navigate('Results', { capturedImage: capturedImage })
   }
 
   const closeCamera = () => {

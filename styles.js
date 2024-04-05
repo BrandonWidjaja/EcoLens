@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
     margin: 10
   },
   imageContainer: {
-    aspectRatio: 16 / 9 // Aspect ratio for a standard image size
+    aspectRatio: 1 / 1 // Aspect ratio for a standard image size
   },
   image: {
     width: '100%',

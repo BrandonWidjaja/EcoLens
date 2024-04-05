@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react'
 import {
   StyleSheet,
@@ -11,42 +10,41 @@ import {
 import { SearchBar } from '@rneui/themed'
 import { View, Text } from 'react-native'
 import { responsiveHeight } from 'react-native-responsive-dimensions'
-import axios from 'axios';
-
+import axios from 'axios'
 
 const Home = ({ navigation }) => {
   const [searchText, setSearchText] = useState('')
 
   const updateSearch = (search) => {
-
-    setSearchText(search);
-  }  
+    setSearchText(search)
+  }
 
   const handleSearchSubmit = async () => {
     try {
-      console.log('Search submitted:', searchText);
-  
+      console.log('Search submitted:', searchText)
+
       if (!searchText) {
-        console.error('Search text is empty');
-        return;
+        console.error('Search text is empty')
+        return
       }
-  
-      const response = await axios.post('http://10.13.87.253:3000/search', { text: searchText }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      console.log('Backend response:', response.data);
-  
+
+      const response = await axios.post(
+        'http://10.13.87.253:3000/search',
+        { text: searchText },
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      )
+      console.log('Backend response:', response.data)
+
       // Handle response data as needed
-  
     } catch (error) {
-      console.error('Error searching text:', error);
+      console.error('Error searching text:', error)
       // Handle error as needed
     }
   }
-  
-  
 
   return (
     <KeyboardAvoidingView
@@ -79,16 +77,19 @@ const Home = ({ navigation }) => {
                 lightTheme={true}
                 value={searchText}
                 round={true}
-
-                containerStyle={[styles.searchBar, { borderWidth: 0, borderBottomWidth: 0, borderTopWidth: 0 }]}
+                containerStyle={[
+                  styles.searchBar,
+                  { borderWidth: 0, borderBottomWidth: 0, borderTopWidth: 0 }
+                ]}
                 inputStyle={styles.searchInput}
-            />
+              />
 
-            <TouchableOpacity style={styles.submitButton} onPress={handleSearchSubmit}>
-
+              <TouchableOpacity
+                style={styles.submitButton}
+                onPress={handleSearchSubmit}
+              >
                 <Text style={styles.submitButtonText}>Submit</Text>
-            </TouchableOpacity>
-
+              </TouchableOpacity>
             </View>
           </View>
         </View>
