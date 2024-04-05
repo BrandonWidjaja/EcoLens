@@ -1,4 +1,5 @@
 import React from 'react'
+import { Icon } from '@rneui/themed'
 import { View, StyleSheet, Text, Platform, ScrollView} from 'react-native'
 import { ListItem } from '@rneui/themed'
 
@@ -6,6 +7,7 @@ const Tips = () => {
   const [expanded1, setExpanded1] = React.useState(false);
   const [expanded2, setExpanded2] = React.useState(false);
   const [expanded3, setExpanded3] = React.useState(false);
+  const [expanded4, setExpanded4] = React.useState(false);
   return (
     <ScrollView contentContainerStyle = {[styles.container, {flexDirection: 'column',},]}>
         <View style = {{flex: 2, maxWidth: '80%', justifyContent:'center', alignItems:'center'}}>
@@ -16,7 +18,7 @@ const Tips = () => {
                 containerStyle = {styles.accordion}
                 content={
                 <ListItem.Content>
-                    <ListItem.Title style = {{fontSize:30, color:"black", fontWeight:"bold"}}>Food containers</ListItem.Title>
+                    <ListItem.Title style = {{fontSize:30, color:"black", fontWeight:"bold"}}>Food</ListItem.Title>
                 </ListItem.Content>
                 }   
                 isExpanded={expanded1}
@@ -24,20 +26,38 @@ const Tips = () => {
                     setExpanded1(!expanded1);
                 }}
             >
-                <ListItem
-                containerStyle = {{alignItems: 'center', borderRadius: 20, backgroundColor:'#FAF3E1'}}>
-                    <ListItem.Content>
-                        <ListItem.Subtitle style = {{paddingBottom:10}}>1. Wash out any food particles that are stuck on the container, this includes sauces, oils and fats.</ListItem.Subtitle>
-                        <ListItem.Subtitle style = {{paddingBottom:10}}>2. Dispose of Food into Organic waste bins so that they can be repurposed into energy </ListItem.Subtitle>
-                        <ListItem.Subtitle>3. Otherwise, Recycle the container following the usual recycling guidelines </ListItem.Subtitle>
-                    </ListItem.Content>
-                </ListItem>
+                <View style = {{flexDirection: 'column', alignItems:'center'}}>
+                    <View style = {{alignItems:'center', width:"90%"}}>
+                        <Icon
+                            key = {1}
+                            name = {'looks-one'}
+                            style={{paddingTop:10}}
+                            color={"green"}
+                        >
+                        </Icon>
+                        <Text style = {styles.tip}>
+                            Remove all food particles, oil, fats and sauces from your container before disposing
+                        </Text>
+                    </View>
+                    <View style = {{alignItems:'center', width:"90%"}}>
+                        <Icon
+                            key = {2}
+                            name = {'looks-two'}
+                            style={{paddingTop:10}}
+                            color={"green"}
+                        >
+                        </Icon>
+                        <Text style = {[styles.tip, {paddingBottom: 10}]}>
+                            Dispose of Food into Organic waste bins so that they can be repurposed
+                        </Text>
+                    </View>
+                </View>
             </ListItem.Accordion>
             <ListItem.Accordion
                 containerStyle = {styles.accordion}
                 content={
                 <ListItem.Content>
-                    <ListItem.Title style = {{fontSize:30, color:"black", fontWeight:"bold"}}></ListItem.Title>
+                    <ListItem.Title style = {{fontSize:30, color:"black", fontWeight:"bold"}}>Products</ListItem.Title>
                 </ListItem.Content>
                 }   
                 isExpanded={expanded2}
@@ -45,20 +65,38 @@ const Tips = () => {
                     setExpanded2(!expanded2);
                 }}
             >
-                <ListItem
-                containerStyle = {{alignItems: 'center', borderRadius: 20, backgroundColor:'#FAF3E1'}}>
-                    <ListItem.Content>
-                        <ListItem.Subtitle style = {{paddingBottom:10}}>1. Wash out any food particles that are stuck on the container, this includes sauces, oils and fats.</ListItem.Subtitle>
-                        <ListItem.Subtitle style = {{paddingBottom:10}}>2. Dispose of Food into Organic waste bins so that they can be repurposed into energy </ListItem.Subtitle>
-                        <ListItem.Subtitle>3. Otherwise, Recycle the container following the usual recycling guidelines </ListItem.Subtitle>
-                    </ListItem.Content>
-                </ListItem>
+                <View style = {{flexDirection: 'column', alignItems:'center'}}>
+                    <View style = {{alignItems:'center', width:"90%"}}>
+                        <Icon
+                            key = {1}
+                            name = {'looks-one'}
+                            style={{paddingTop:10}}
+                            color={"green"}
+                        >
+                        </Icon>
+                        <Text style = {styles.tip}>
+                            Make sure to recycle only the recyclable parts of a product
+                        </Text>
+                    </View>
+                    <View style = {{alignItems:'center', width:"90%"}}>
+                        <Icon
+                            key = {2}
+                            name = {'looks-two'}
+                            style={{paddingTop:10}}
+                            color={"green"}
+                        >
+                        </Icon>
+                        <Text style = {[styles.tip, {paddingBottom: 10}]}>
+                            Most products tell you how to recycle the independent pieces of the product, just look for the Recycle Icon
+                        </Text>
+                    </View>
+                </View>
             </ListItem.Accordion>
             <ListItem.Accordion
-                containerStyle = {{borderRadius: 20, backgroundColor:"white"}}
+                containerStyle = {styles.accordion}
                 content={
                 <ListItem.Content>
-                    <ListItem.Title style = {{fontSize:30, color:"black", fontWeight:"bold"}}>Food containers</ListItem.Title>
+                    <ListItem.Title style = {{fontSize:30, color:"black", fontWeight:"bold"}}>Large Objects</ListItem.Title>
                 </ListItem.Content>
                 }   
                 isExpanded={expanded3}
@@ -66,17 +104,96 @@ const Tips = () => {
                     setExpanded3(!expanded3);
                 }}
             >
-                <ListItem
-                containerStyle = {{alignItems: 'center', borderRadius: 20, backgroundColor:'#FAF3E1'}}>
-                    <ListItem.Content>
-                        <ListItem.Subtitle style = {{paddingBottom:10}}>1. Before throwing out food containers, Wash out any food particles that are left o</ListItem.Subtitle>
-                        <ListItem.Subtitle>1. Before throwing out food containers, Wash out any food </ListItem.Subtitle>
-                        <ListItem.Subtitle>1. Before throwing out food containers, Wash out any food </ListItem.Subtitle>
-                        <ListItem.Subtitle>1. Before throwing out food containers, Wash out any food </ListItem.Subtitle>
-                    </ListItem.Content>
-                </ListItem>
+                <View style = {{flexDirection: 'column', alignItems:'center'}}>
+                    <View style = {{alignItems:'center', width:"90%"}}>
+                        <Icon
+                            key = {1}
+                            name = {'looks-one'}
+                            style={{paddingTop:10}}
+                            color={"green"}
+                        >
+                        </Icon>
+                        <Text style = {styles.tip}>
+                            Flatten your large cardboard boxes and plastics to save space in your recycling boxes
+                        </Text>
+                    </View>
+                    <View style = {{alignItems:'center', width:"90%"}}>
+                        <Icon
+                            key = {2}
+                            name = {'looks-two'}
+                            style={{paddingTop:10}}
+                            color={"green"}
+                        >
+                        </Icon>
+                        <Text style = {styles.tip}>
+                            If too large or unflattenable, such as furniture, arrange a pickup from a recycling center that handles recycling
+                        </Text>
+                    </View>
+                    <View style = {{alignItems:'center', width:"90%"}}>
+                        <Icon
+                            key = {3}
+                            name = {'looks-3'}
+                            style={{paddingTop:10}}
+                            color={"green"}
+                        >
+                        </Icon>
+                        <Text style = {styles.tip}>
+                            Handle large objects carefully and wear protective gear if necessary
+                        </Text>
+                    </View>
+                    <View style = {{alignItems:'center', width:"90%"}}>
+                        <Icon
+                            key = {3}
+                            name = {'looks-4'}
+                            style={{paddingTop:10}}
+                            color={"green"}
+                        >
+                        </Icon>
+                        <Text style = {[styles.tip, {paddingBottom: 10}]}>
+                            Consider repurposing the objects or selling them if not needed
+                        </Text>
+                    </View>
+                </View>
             </ListItem.Accordion>
-            
+            <ListItem.Accordion
+                containerStyle = {styles.accordion}
+                content={
+                <ListItem.Content>
+                    <ListItem.Title style = {{fontSize:30, color:"black", fontWeight:"bold"}}>Community</ListItem.Title>
+                </ListItem.Content>
+                }   
+                isExpanded={expanded4}
+                onPress={() => {
+                    setExpanded4(!expanded4);
+                }}
+            >
+                <View style = {{flexDirection: 'column', alignItems:'center'}}>
+                    <View style = {{alignItems:'center', width:"90%"}}>
+                        <Icon
+                            key = {1}
+                            name = {'looks-one'}
+                            style={{paddingTop:10}}
+                            color={"green"}
+                        >
+                        </Icon>
+                        <Text style = {styles.tip}>
+                            Spread awareness to your community about recycling, get them to think about their recycling habits
+                        </Text>
+                    </View>
+                    <View style = {{alignItems:'center', width:"90%"}}>
+                        <Icon
+                            key = {2}
+                            name = {'looks-two'}
+                            style={{paddingTop:10}}
+                            color={"green"}
+                        >
+                        </Icon>
+                        <Text style = {[styles.tip, {paddingBottom: 10}]}>
+                            Buy recyclable products, try to limit your use of soft plastics and reuse old containers.
+                        </Text>
+                    </View>
+                </View>
+            </ListItem.Accordion>
         </View>
     </ScrollView>
   )
@@ -93,9 +210,13 @@ const styles = StyleSheet.create({
         paddingTop:30
     },
     accordion: {
-        flexGrow: 1,
         borderRadius: 20, 
         backgroundColor:"white",
+    },
+    tip:{
+        textAlign:'center',
+        fontWeight:'bold',
+        paddingTop: 10,
     },
     round:{
         borderRadius: 50,
