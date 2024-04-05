@@ -26,7 +26,7 @@ export default function HomeWrapper() {
         }}
       >
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Profile" component={CameraScreen} />
+        <Stack.Screen name="Camera" component={CameraScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )

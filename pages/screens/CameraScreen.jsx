@@ -1,115 +1,154 @@
+import React, { useState, useEffect, useRef } from 'react'
 import { StatusBar } from 'expo-status-bar'
-import { ScrollView, StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, View, Image, Alert } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { Card, Button } from '@rneui/themed'
-import { useState , useRef} from 'react'
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import { Camera } from 'expo-camera';
-import tw from "twrnc";
+import { Button } from '@rneui/themed'
+import { Camera } from 'expo-camera'
+import tw from 'twrnc'
 
+const CameraScreen = ({ navigation }) => {
+  const [showCamera, setShowCamera] = useState(false)
+  const [capturedImage, setCapturedImage] = useState(null)
+  const [confirmedImage, setConfirmedImage] = useState(null)
+  const cameraRef = useRef(null)
 
-const CameraScreen = () => {
-  const [cameraPermission, setCameraPermission] = useState(null);
-  const [camera, setCamera] = useState(null);
-  const [imageUri, setImageUri] = useState(null);
-  const [showCamera, setShowCamera] = useState(false);
+  useEffect(() => {
+    checkCameraPermission()
+  }, [])
 
-  const cameraRef = useRef(null);
-
-  const askCameraPermission = async () => {
-    const { status } = await Camera.requestCameraPermissionsAsync();
-    setCameraPermission(status === 'granted');
-  };
+  const checkCameraPermission = async () => {
+    const { status } = await Camera.requestCameraPermissionsAsync()
+    if (status === 'granted') {
+      setShowCamera(true)
+    } else {
+      Alert.alert(
+        'Camera Permission Required',
+        'Please enable camera access in settings to use this feature.'
+      )
+    }
+  }
 
   const takePicture = async () => {
     if (cameraRef.current) {
-      const photo = await cameraRef.current.takePictureAsync();
-      const uri = photo.uri;
-      console.log('Photo URI:', uri);
-      setImageUri(uri);
-      uploadImage(uri);
+      const photo = await cameraRef.current.takePictureAsync()
+      const uri = photo.uri
+      console.log('Photo URI:', uri)
+      setCapturedImage(uri)
     }
-  };
+  }
 
   const uploadImage = async (uri) => {
-    const formData = new FormData();
+    const formData = new FormData()
     formData.append('image', {
       uri,
       name: 'photo.jpg',
-      type: 'image/jpeg',
-    });
+      type: 'image/jpeg'
+    })
 
     try {
-      const response = await fetch('http://10.13.201.21:3000/upload', {
+      const response = await fetch('http://10.13.87.253:3000/upload', {
         method: 'POST',
         body: formData,
         headers: {
-          'content-type': 'multipart/form-data',
-        },
-      });
-      const responseData = await response.json();
-      console.log('Upload Response:', responseData);
+          'content-type': 'multipart/form-data'
+        }
+      })
+      const responseData = await response.json()
+      console.log('Upload Response:', responseData)
     } catch (error) {
-      console.error('Upload Error:', error);
+      console.error('Upload Error:', error)
     }
-  };
+  }
 
-  const openCamera = () => {
-    setShowCamera(true);
-  };
+  const confirmPicture = () => {
+    setConfirmedImage(capturedImage)
+    closeCamera()
+    uploadImage(capturedImage)
+  }
 
   const closeCamera = () => {
-    setShowCamera(false);
-  };
+    setShowCamera(false)
+    setCapturedImage(null)
+  }
 
   return (
     <SafeAreaProvider>
       <View style={tw`flex-1 justify-center items-center`}>
-        <Text>Open up App.js to start working on your app!</Text>
         <StatusBar style="auto" />
-        {!showCamera && (
-          <Button title="Open Camera" onPress={openCamera} />
-        )}
-        {cameraPermission === null ? (
-          <Button title="Request Camera Permission" onPress={askCameraPermission} />
-        ) : cameraPermission === false ? (
-          <Text>No access to camera</Text>
-        ) : showCamera && (
+        {showCamera && (
           <View style={styles.cameraContainer}>
             <Camera
               ref={cameraRef}
               style={styles.camera}
               type={Camera.Constants.Type.back}
               ratio="1:1"
-              onCameraReady={() => setCamera(true)}
+              onCameraReady={() => setCapturedImage(null)}
             />
             <View style={styles.buttonContainer}>
               <Button title="Take Picture" onPress={takePicture} />
-              <Button title="Take Another Photo" onPress={closeCamera} />
+              <Button
+                title="Cancel"
+                onPress={() => {
+                  closeCamera()
+                  navigation.navigate('Home')
+                }}
+              />
             </View>
+          </View>
+        )}
+        {capturedImage && (
+          <View style={styles.imagePreviewContainer}>
+            <Image
+              source={{ uri: capturedImage }}
+              style={styles.imagePreview}
+            />
+            <View style={styles.buttonContainer}>
+              <Button title="Confirm" onPress={confirmPicture} />
+              <Button title="Retake" onPress={() => setCapturedImage(null)} />
+              <Button title="Cancel" onPress={closeCamera} />
+            </View>
+          </View>
+        )}
+        {confirmedImage && (
+          <View style={styles.imagePreviewContainer}>
+            <Image
+              source={{ uri: confirmedImage }}
+              style={styles.imagePreview}
+            />
+            {}
           </View>
         )}
       </View>
     </SafeAreaProvider>
-  );
+  )
 }
+
 const styles = StyleSheet.create({
   cameraContainer: {
     flex: 1,
-    width: '100%',
+    width: '100%'
   },
   camera: {
-    flex: 1,
+    flex: 1
   },
   buttonContainer: {
-    position: 'absolute',
-    bottom: 20,
-    left: 0,
-    right: 0,
-    justifyContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     alignItems: 'center',
+    marginVertical: 20
   },
-});
+  imagePreviewContainer: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  imagePreview: {
+    width: '80%',
+    height: 300,
+    resizeMode: 'contain',
+    marginBottom: 20
+  }
+})
 
 export default CameraScreen

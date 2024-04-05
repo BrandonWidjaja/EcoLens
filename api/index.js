@@ -31,11 +31,6 @@ function encodeImage(imagePath) {
   return base64.fromByteArray(imageData);
 }
 
-// Test route (REMOVE LATER)
-app.get('/hello', (req, res) => {
-  res.send('Hello, world!');
-});
-
 // Route to handle image upload
 app.post('/upload', upload.single('image'), async (req, res) => {
   try {
@@ -54,6 +49,7 @@ app.post('/upload', upload.single('image'), async (req, res) => {
       "Authorization": `Bearer ${apiKey}`
     };
 
+    console.log("Requesting from API\n")
     const payload = {
       "model": "gpt-4-vision-preview",
       "messages": [
@@ -83,7 +79,7 @@ app.post('/upload', upload.single('image'), async (req, res) => {
     const response = await axios.post(apiEndpoint, payload, { headers });
 
     console.log('API Response:', response.data);
-    const generatedMessage = response.data.choices[0].message;
+    const generatedMessage = response.data.choices[0].message.content;
     console.log('Generated message:', generatedMessage);
 
     res.json({ message: generatedMessage });
