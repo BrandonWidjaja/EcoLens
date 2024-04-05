@@ -30,11 +30,11 @@ EcoLens is an innovative mobile application designed to help users understand ho
 2. Install Dependencies
   ```bash
   cd EcoLens
-  npm install
+  npm install```
 3. Start backend and frontend app
   ```bash
   node api/index.js
-  npx expo start
+  npx expo start```
 4. Download Expo Go on mobile device and scan the QR code in the console
   
 
