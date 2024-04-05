@@ -29,13 +29,11 @@ EcoLens is an innovative mobile application designed to help users understand ho
    
 2. Install Dependencies
 
-  ```bash
   cd EcoLens
   npm install
 
 3. Start backend and frontend app
 
-  ```bash
   node api/index.js
   npx expo start
 
