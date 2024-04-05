@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar'
 import { ScrollView, StyleSheet, Text, View, Image } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
+
+import { ThemeProvider } from '@rneui/themed'
 import { Card, Button } from '@rneui/themed'
 import { useState } from 'react'
 import Home from './pages/screens/Home.jsx'
@@ -9,6 +11,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Page from './pages/screens/Page.jsx'
 import CameraScreen from './pages/screens/CameraScreen.jsx'
 
+// Your App
 export default function App() {
   const Stack = createNativeStackNavigator();
   const [backendText, setBackendText] = useState(null);
@@ -37,7 +40,6 @@ export default function App() {
       </Stack.Navigator>
     </NavigationContainer>
   );
-  
 }
 const styles = StyleSheet.create({
   cameraContainer: {
