@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { View, ScrollView } from 'react-native'
 import { Card, Text, Header, Icon } from '@rneui/themed'
 import { Image } from 'react-native'
-import ImageWithBlackBars from '../../components/ImageWithBlackBars'
 import { styles } from '../../styles'
 const shortText =
   'In the heart of a bustling city, amidst the rhythmic pulse of life, stories unfold like petals unfurling in the morning sun. Each step on the pavement echoes with whispered tales of triumph, love, and resilience. In the labyrinth of streets, dreams intertwine with reality, painting the urban landscape with hues of ambition and passion. Here, amidst the cacophony of voices and the symphony of honking horns, life dances to its own unique melody, a testament to the infinite possibilities that reside within the beating heart of a metrasdfjagaogpjkopolis.'
