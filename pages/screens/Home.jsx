@@ -14,10 +14,10 @@ const Home = ({navigation}) => {
   }
   return (
     <View style = {[styles.container, {flexDirection: 'column',},]}>
-        <View style = {{flex: 1, backgroundColor: 'orange', maxWidth: '80%', justifyContent:'center', alignItems:'center'}}>
+        <View style = {{flex: 1, maxWidth: '80%', justifyContent:'center', alignItems:'center'}}>
             <Text style = {styles.title}>EcoLens</Text>
         </View>
-        <View style = {{flex: 3, backgroundColor: 'red', maxWidth: '80%', justifyContent:'center', alignItems:'center'}}>
+        <View style = {{flex: 3, maxWidth: '80%', justifyContent:'center', alignItems:'center'}}>
             <Text style = {styles.desc}>
                 Click the button below to scan an Image!
             </Text>
@@ -29,7 +29,7 @@ const Home = ({navigation}) => {
                 />
             </TouchableOpacity>
         </View>
-        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height' ? 'padding' : 'height'} style = {{flex: 2, backgroundColor: 'white', width: '80%'}}>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height' ? 'padding' : 'height'} style = {{flex: 2, width: '80%'}}>
             <Text style = {styles.desc}>
                 Or
             </Text>
@@ -50,13 +50,14 @@ const styles = StyleSheet.create({
         fontSize: 70,
         fontFamily: 'Arial',
         fontWeight: '500',
-        color: "green",
+        color: "black",
+        paddingTop:30
     },
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'lightgreen',
+        backgroundColor: '#FAF3E1',
         flexDirection: 'column',
     },
     logo: {
