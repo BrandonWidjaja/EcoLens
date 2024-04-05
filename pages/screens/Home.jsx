@@ -29,7 +29,7 @@ const Home = ({ navigation }) => {
       }
 
       const response = await axios.post(
-        'http://10.13.87.253:3000/search',
+        'http://' + process.env.MY_IP + ':3000/search',
         { text: searchText },
         {
           headers: {
