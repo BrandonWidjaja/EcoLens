@@ -11,13 +11,8 @@ const PORT = 3000;
 
 // Import dotenv and configure
 require('dotenv').config();
-
 // Access the API_KEY variable
 const apiKey = process.env.API_KEY;
-
-// Now you can use the apiKey variable in your code
-console.log(apiKey); 
-
 
 // Set up multer for file uploads
 const storage = multer.diskStorage({
@@ -36,7 +31,7 @@ function encodeImage(imagePath) {
   return base64.fromByteArray(imageData);
 }
 
-// Route to handle incoming requests
+// Test route (REMOVE LATER)
 app.get('/hello', (req, res) => {
   res.send('Hello, world!');
 });
@@ -67,7 +62,9 @@ app.post('/upload', upload.single('image'), async (req, res) => {
           "content": [
             {
               "type": "text",
-              "text": "What is this object made of and how can I recycle each part? If not a recyclable object state non recyclable along with what the object is. Limit your response to 200 tokens."
+              "text": `What is this object made of and how can I recycle each part? 
+                      If not a recyclable object state non recyclable along with what the object is. 
+                      Limit your response to 200 tokens.`
             },
             {
               "type": "image_url",
@@ -89,7 +86,7 @@ app.post('/upload', upload.single('image'), async (req, res) => {
     const generatedMessage = response.data.choices[0].message;
     console.log('Generated message:', generatedMessage);
 
-    res.json({ message: 'Image uploaded and processed successfully' });
+    res.json({ message: generatedMessage });
   } catch (error) {
     console.error('Error uploading image:', error);
     res.status(500).json({ error: 'Failed to upload image' });
