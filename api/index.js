@@ -67,7 +67,7 @@ app.post('/upload', upload.single('image'), async (req, res) => {
           "content": [
             {
               "type": "text",
-              "text": "What is this object made of and how can I recycle its parts?"
+              "text": "What is this object made of and how can I recycle each part? If not a recyclable object state non recyclable along with what the object is. Limit your response to 200 tokens."
             },
             {
               "type": "image_url",
@@ -79,7 +79,8 @@ app.post('/upload', upload.single('image'), async (req, res) => {
           ]
         }
       ],
-      "max_tokens": 300
+      "max_tokens": 300,
+      "temperature": 0.2
     };
 
     const response = await axios.post(apiEndpoint, payload, { headers });
