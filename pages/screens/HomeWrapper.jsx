@@ -23,6 +23,7 @@ export default function HomeWrapper() {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
+          gestureEnabled: false,
         }}
       >
         <Stack.Screen name="Home" component={Home} />
