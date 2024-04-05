@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-const theme = {
+export const theme = {
   color: {
     light: '#FAF3E1',
     dark: '#023E1A'
@@ -47,5 +47,29 @@ export const styles = StyleSheet.create({
     backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  container1: {
+    flex: 1,
+    paddingBottom: 8 // Adjust padding bottom to move the tabs up or down
+  },
+  tabBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: theme.color.light,
+    position: 'absolute',
+    bottom: 0, // Adjust bottom position to move the tabs up or down
+    left: 0,
+    right: 0,
+    height: 40, // Adjust tab bar height as needed
+    elevation: 8 // Add elevation for Android shadow
+  },
+  tabItem: {
+    flex: 1,
+    textAlign: 'center',
+    paddingVertical: 8 // Adjust vertical padding as needed
+  },
+  tabView: {
+    paddingBottom: 40 // Adjust padding bottom to move the content up or down
   }
 })

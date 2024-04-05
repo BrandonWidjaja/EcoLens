@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { View, ScrollView } from 'react-native'
-import { Card, Text, Header, Icon } from '@rneui/themed'
+import { Card, Text } from '@rneui/themed'
 import { Image } from 'react-native'
 import { styles } from '../../styles'
 const shortText =
