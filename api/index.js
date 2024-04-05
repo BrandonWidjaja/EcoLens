@@ -101,8 +101,7 @@ app.post("/search", async (req, res) => {
     });
 
     const promptText = `How do I recycle ${text}. 
-                        Make it short and concise, under 200 tokens. 
-                        If not recyclable, just state what it is and "This is not a recyclable object".`;
+                        Make it short and concise, under 200 tokens.`;
     console.log(promptText);
 
     const completion = await openai.chat.completions.create({
