@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 70,
-    fontFamily: 'Arial',
+    // fontFamily: 'Arial',
     fontWeight: '500',
     color: 'black',
     paddingTop: 30
