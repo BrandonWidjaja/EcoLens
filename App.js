@@ -1,12 +1,11 @@
 import { StyleSheet } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import Swipe from './pages/screens/Swipe'
-
 // Your App
 export default function App() {
   return (
     <SafeAreaProvider style={styles.background}>
-      <Swipe></Swipe>
+      <Swipe />
     </SafeAreaProvider>
   )
 }

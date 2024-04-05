@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet, Text, View, Image } from 'react-native'
 import { useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { Home, CameraScreen } from './index.js'
+import { Home, CameraScreen, Results } from './index.js'
 
 export default function HomeWrapper() {
   const Stack = createNativeStackNavigator()
@@ -27,6 +27,7 @@ export default function HomeWrapper() {
       >
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Camera" component={CameraScreen} />
+        <Stack.Screen name="Results" component={Results} />
       </Stack.Navigator>
     </NavigationContainer>
   )
