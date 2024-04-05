@@ -1,12 +1,17 @@
-import React, { useState, useRef } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Card } from '@rneui/themed';
-import tw from 'twrnc';
+import { StatusBar } from 'expo-status-bar'
+import { ScrollView, StyleSheet, Text, View, Image, Button } from 'react-native'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { Card, Button } from '@rneui/themed'
+import { useState } from 'react'
+import tw from 'twrnc'
+import Home from './pages/screens/Home.jsx'
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Page from './pages/screens/Page.jsx'
 import { Camera } from 'expo-camera';
 
 export default function App() {
+  const Stack = createNativeStackNavigator();
   const [backendText, setBackendText] = useState(null);
   const [cameraPermission, setCameraPermission] = useState(null);
   const [camera, setCamera] = useState(null);
@@ -73,6 +78,19 @@ export default function App() {
   };
 
   return (
+    <NavigationContainer>
+      <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}>
+          <Stack.Screen
+            name="Home"
+            component={Home}
+          />
+          <Stack.Screen name="Profile" component={Page} />
+      </Stack.Navigator>
+    </NavigationContainer>
+
     <SafeAreaProvider>
       <View style={tw`flex-1 justify-center items-center`}>
         <Text>Open up App.js to start working on your app!</Text>
@@ -107,8 +125,8 @@ export default function App() {
       </View>
     </SafeAreaProvider>
   );
+  
 }
-
 const styles = StyleSheet.create({
   cameraContainer: {
     flex: 1,
@@ -125,4 +143,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  container: {
+    flex: 1,
+    backgroundColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
 });
+
