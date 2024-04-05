@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import MapView, { Marker } from 'react-native-maps'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 
+console.log(process.env.EXPO_PUBLIC_MAPS_API_KEY)
 const Map = () => {
   const [region, setRegion] = useState({
     latitude: -37.810236,
@@ -19,7 +20,7 @@ const Map = () => {
   const fetchRecyclingCenters = async () => {
     try {
       const response = await fetch(
-        `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${region.latitude},${region.longitude}&radius=5000&keyword=recycling%20centre&type=recycling&key=${process.env.MAPS_API_KEY}`
+        `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${region.latitude},${region.longitude}&radius=5000&keyword=recycling%20centre&type=recycling&key=${process.env.EXPO_PUBLIC_MAPS_API_KEY}`
       )
       const data = await response.json()
       if (data.results) {
@@ -69,7 +70,7 @@ const Map = () => {
             }
           }}
           query={{
-            key: process.env.MAPS_API_KEY,
+            key: process.env.EXPO_PUBLIC_MAPS_API_KEY,
             language: 'en',
             types: 'establishment' // Restrict to establishments (businesses)
           }}
