@@ -1,19 +1,67 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, Image } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import { ThemeProvider } from '@rneui/themed'
 import { Card, Button } from '@rneui/themed'
-
-import { styles } from './styles.js'
-import HeaderWithSwiper from './pages/MySwiper.jsx'
-import HowTo from './pages/screens/HowToScreen.jsx'
+import { useState } from 'react'
+import Home from './pages/screens/Home.jsx'
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Page from './pages/screens/Page.jsx'
+import CameraScreen from './pages/screens/CameraScreen.jsx'
 
 // Your App
 export default function App() {
+  const Stack = createNativeStackNavigator();
+  const [backendText, setBackendText] = useState(null);
+  const handleButtonPress = async () => {
+    try {
+      const response = await fetch('http://128.250.0.213:3000/hello');
+      const data = await response.text();
+      console.log(data); // Log the response
+      setBackendText(data); // Set the state with fetched data
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <SafeAreaProvider>
-      <HowTo></HowTo>
-    </SafeAreaProvider>
-  )
+    <NavigationContainer>
+      <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}>
+          <Stack.Screen
+            name="Home"
+            component={Home}
+          />
+          <Stack.Screen name="Profile" component={CameraScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
+const styles = StyleSheet.create({
+  cameraContainer: {
+    flex: 1,
+    width: '100%',
+  },
+  camera: {
+    flex: 1,
+  },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 20,
+    left: 0,
+    right: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  container: {
+    flex: 1,
+    backgroundColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+});
+

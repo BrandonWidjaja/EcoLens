@@ -41,5 +41,11 @@ export const styles = StyleSheet.create({
   smallText: {
     color: theme.dark,
     fontSize: 20 // Apply Josefin Sans font family
+  },
+  container: {
+    flex: 1,
+    backgroundColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 })
