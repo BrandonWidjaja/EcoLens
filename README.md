@@ -31,9 +31,18 @@ EcoLens is an innovative mobile application designed to help users understand ho
 
    ```bash
    cd EcoLens
-   npm install
+   npm i
+   cd api
+   npm i
+   
+3. Create .env file in root folder. Insert the following:
 
-3. Start backend and frontend app
+   ```bash
+   API_KEY = "YOUR_API_KEY"
+
+4. Create a folder named 'uploads' in root folder
+   
+5. Start backend and frontend app from root folder
 
    ```bash
    node api/index.js
