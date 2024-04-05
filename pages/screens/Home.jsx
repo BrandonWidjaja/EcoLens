@@ -7,7 +7,7 @@ import { responsiveHeight } from "react-native-responsive-dimensions";
 
 const Home = ({navigation}) => {
   const [count, setCount] = useState(0);
-  const navigate = () => setCount(prevCount => prevCount + 1)
+  //const navigate = () => setCount(prevCount => prevCount + 1)
   const [searchText, setSearchText] = useState('');
   const updateSearch = (search) => {
     setSearchText(search);
@@ -17,11 +17,11 @@ const Home = ({navigation}) => {
         <View style = {{flex: 1, backgroundColor: 'orange', maxWidth: '80%', justifyContent:'center', alignItems:'center'}}>
             <Text style = {styles.title}>EcoLens</Text>
         </View>
-        <View style = {{flex: 4, backgroundColor: 'red', maxWidth: '80%', justifyContent:'center', alignItems:'center'}}>
+        <View style = {{flex: 3, backgroundColor: 'red', maxWidth: '80%', justifyContent:'center', alignItems:'center'}}>
             <Text style = {styles.desc}>
                 Click the button below to scan an Image!
             </Text>
-            <TouchableOpacity onPress={navigate}>
+            <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
                 <Image 
                     resizeMode="cover"
                     style = {styles.logo}
@@ -29,7 +29,7 @@ const Home = ({navigation}) => {
                 />
             </TouchableOpacity>
         </View>
-        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height' ? 'padding' : 'height'} style = {{flex: 3, backgroundColor: 'white', width: '80%'}}>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height' ? 'padding' : 'height'} style = {{flex: 2, backgroundColor: 'white', width: '80%'}}>
             <Text style = {styles.desc}>
                 Or
             </Text>
@@ -47,7 +47,7 @@ const Home = ({navigation}) => {
 
 const styles = StyleSheet.create({
     title: {
-        fontSize: 50,
+        fontSize: 70,
         fontFamily: 'Arial',
         fontWeight: '500',
         color: "green",
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     },
     logo: {
         aspectRatio:1,
-        height: responsiveHeight(25),
+        height: responsiveHeight(30),
         borderColor: 'green',
         borderWidth: 9,
         borderRadius: 100000,
