@@ -3,10 +3,10 @@ import { View, useWindowDimensions, StyleSheet } from 'react-native'
 import { TabView, SceneMap } from 'react-native-tab-view'
 import { Icon } from '@rneui/themed'
 import { styles, theme } from '../../styles.js'
-import { Info, Map } from './index.js'
+import { Info, Map, Tips } from './index.js'
 import HomeWrapper from './HomeWrapper.jsx'
 const renderScene = SceneMap({
-  left: Info,
+  left: Tips,
   mid: HomeWrapper,
   right: Map
 })

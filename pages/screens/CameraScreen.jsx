@@ -46,7 +46,7 @@ const CameraScreen = ({ navigation }) => {
     })
 
     try {
-      const response = await fetch('http://10.13.87.253:3000/upload', {
+      const response = await fetch('http://128.250.0.213:3000/upload', {
         method: 'POST',
         body: formData,
         headers: {
