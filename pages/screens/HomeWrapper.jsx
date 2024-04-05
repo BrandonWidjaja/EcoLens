@@ -1,22 +1,10 @@
-import { ScrollView, StyleSheet, Text, View, Image } from "react-native";
-import { useState } from "react";
+import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Home, CameraScreen, Results, SearchResults } from "./index.js";
 
 export default function HomeWrapper() {
   const Stack = createNativeStackNavigator();
-  const [backendText, setBackendText] = useState(null);
-  const handleButtonPress = async () => {
-    try {
-      const response = await fetch("http://128.250.0.213:3000/hello");
-      const data = await response.text();
-      console.log(data); // Log the response
-      setBackendText(data); // Set the state with fetched data
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
     <NavigationContainer>
