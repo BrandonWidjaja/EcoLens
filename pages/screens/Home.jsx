@@ -39,6 +39,9 @@ const Home = ({ navigation }) => {
       )
       console.log('Backend response:', response.data)
 
+      // Clear search text after successful submission
+      setSearchText('')
+
       // Handle response data as needed
     } catch (error) {
       console.error('Error searching text:', error)
