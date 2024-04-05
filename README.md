@@ -38,7 +38,9 @@ EcoLens is an innovative mobile application designed to help users understand ho
 3. Create .env file in root folder. Insert the following:
 
    ```bash
-   API_KEY = "YOUR_API_KEY"
+   API_KEY = "YOUR_OPENAI_API_KEY"
+   EXPO_PUBLIC_MAPS_API_KEY= "YOUR_GOOGLEMAPS_API_KEY"
+   EXPO_PUBLIC_MY_IP = "YOUR_IPV4_KEY"
 
 4. Create a folder named 'uploads' in root folder
    
