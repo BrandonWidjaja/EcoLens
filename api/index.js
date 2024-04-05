@@ -1,13 +1,13 @@
 // backend/index.js
-
 const express = require('express');
 const multer = require('multer');
-const path = require('path');
 const fs = require('fs');
 const base64 = require('base64-js');
 const axios = require('axios');
+const { default: OpenAI } = require('openai');
 const app = express();
 const PORT = 3000;
+app.use(express.json());
 
 // Import dotenv and configure
 require('dotenv').config();
@@ -88,6 +88,43 @@ app.post('/upload', upload.single('image'), async (req, res) => {
     res.status(500).json({ error: 'Failed to upload image' });
   }
 });
+
+
+app.post('/search', async (req, res) => {
+  try {
+    
+    const { text } = req.body;
+    console.log(text);
+    console.log("Requesting from API\n")
+
+    
+    const openai = new OpenAI({
+      apiKey: process.env.API_KEY,
+    });
+    
+    const promptText = `How do I recycle ${text}. 
+                        Make it short and concise, under 200 tokens. 
+                        If not recyclable, just state what it is and "This is not a recyclable object".`;
+    console.log(promptText);
+    
+    
+    const completion = await openai.chat.completions.create({
+        messages: [{"role": "user", "content": promptText}],
+        model: "gpt-3.5-turbo",
+    })
+    console.log('API Response:', completion);
+    response = completion.choices[0].message.content;
+    console.log('Message:', response);
+    const generatedMessage = response;
+
+    res.json({ message: generatedMessage });
+
+  } catch (error) {
+    console.error('Error searching text:', error);
+    res.status(500).json({ error: 'Failed to search text' });
+  }
+});
+
 
 // Start the server
 app.listen(PORT, () => {
