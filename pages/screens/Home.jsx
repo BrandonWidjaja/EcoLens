@@ -9,7 +9,6 @@ import {
 } from 'react-native'
 import { SearchBar } from '@rneui/themed'
 import { View, Text } from 'react-native'
-import { responsiveHeight } from 'react-native-responsive-dimensions'
 import axios from 'axios'
 import PressableImage from '../../components/PressableImage.jsx'
 
