@@ -1,3 +1,4 @@
+_This project was created in 3 days during CISSA CodeBrew 2024_
 # EcoLens
 
 EcoLens is an innovative mobile application designed to help users understand how to recycle different parts of objects by simply taking pictures. With EcoLens, recycling becomes more accessible and intuitive, promoting environmental sustainability in our daily lives.
