@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { StyleSheet, Image, TouchableOpacity, Animated } from 'react-native'
 import { responsiveHeight } from 'react-native-responsive-dimensions'
-const PressableImage = ({ onPress, source }) => {
+const PressableImage = ({ onPress }) => {
   const scaleAnim = new Animated.Value(1)
 
   useEffect(() => {
