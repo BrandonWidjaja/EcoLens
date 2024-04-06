@@ -58,7 +58,11 @@ const Home = ({ navigation }) => {
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <View style={styles.innerContainer}>
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>EcoLens</Text>
+          <Image
+                resizeMode="contain"
+                style={styles.ecolensImage}
+                source={require("../../assets/ecolens.png")}
+                />
           </View>
           <View style={styles.contentContainer}>
             <Text style={styles.desc}>
@@ -67,7 +71,7 @@ const Home = ({ navigation }) => {
             <PressableImage onPress={() => navigation.navigate('Camera')} />
           </View>
           <View style={styles.searchContainer}>
-            <Text style={styles.desc}>Or</Text>
+            <Text style={styles.desc}>Or describe your item here</Text>
             <View style={styles.searchBarContainer}>
               <SearchBar
                 placeholder="Search Item"
@@ -109,7 +113,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "flex-end",
     alignItems: 'center',
     maxWidth: '80%'
   },
@@ -146,7 +150,7 @@ const styles = StyleSheet.create({
     paddingTop: 30
   },
   desc: {
-    paddingTop: 20,
+    paddingTop: 0,
     fontSize: 25,
     textAlign: 'center',
     paddingBottom: 20
@@ -160,6 +164,12 @@ const styles = StyleSheet.create({
   submitButtonText: {
     color: 'white',
     fontSize: 18
+  },
+  ecolensImage: {
+    width: 300, 
+    height: 100, 
+    resizeMode: 'contain', 
+    
   }
 })
 
