@@ -100,14 +100,6 @@ const CameraScreen = ({ navigation }) => {
                 onPress={confirmPicture}
               />
               <Button title="Retake" color={"green"} onPress={retakePhoto} />
-              <Button
-                title="Cancel"
-                color={"green"}
-                onPress={() => {
-                  closeCamera();
-                  navigation.navigate("Home");
-                }}
-              />
             </View>
           </View>
         )}
