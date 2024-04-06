@@ -8,7 +8,7 @@ const PressableImage = ({ onPress }) => {
     const pulseAnim = Animated.loop(
       Animated.sequence([
         Animated.timing(scaleAnim, {
-          toValue: 1.07,
+          toValue: 1.06,
           duration: 700,
           useNativeDriver: true
         }),
